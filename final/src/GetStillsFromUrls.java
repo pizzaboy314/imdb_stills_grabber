@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,7 +17,7 @@ public class GetStillsFromUrls {
 	public static void main(String[] args) {
 		List<FileURL> downloadURLS = new ArrayList<FileURL>();
 		boolean loop = true;
-		String downloadLoc = System.getProperty("user.home") + "\\Downloads";
+		String downloadLoc = System.getProperty("user.home") + File.separator + "Downloads";
 		String url;
 		String folder;
 		String input;
@@ -27,7 +25,7 @@ public class GetStillsFromUrls {
 		Scanner reader = new Scanner(System.in);
 		System.out.println("High resolution images will be saved in: " + downloadLoc);
 		while(loop){
-			downloadLoc = System.getProperty("user.home") + "\\Downloads";
+			downloadLoc = System.getProperty("user.home") + File.separator + "Downloads";
 			
 			System.out.print("Enter the URL from an IMDB image result page: ");
 			url = reader.nextLine();
@@ -35,9 +33,9 @@ public class GetStillsFromUrls {
 			folder = reader.nextLine();
 			
 			if(folder.equals("") || folder == null){
-				downloadLoc += "\\IMDB";
+				downloadLoc += File.separator + "IMDB";
 			} else {
-				downloadLoc += "\\" + folder;
+				downloadLoc += File.separator + folder;
 			}
 			File path = new File(downloadLoc);
 			if(!path.exists())
@@ -129,7 +127,7 @@ public class GetStillsFromUrls {
 			try {
 				URL url = new URL(downloadURL.getUrl());
 				InputStream in = url.openStream();
-				Files.copy(in, Paths.get(downloadLoc + "\\" + downloadURL.getFilename()));
+				Files.copy(in, Paths.get(downloadLoc + File.separator + downloadURL.getFilename()));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
